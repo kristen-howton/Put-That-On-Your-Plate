@@ -18,6 +18,16 @@ export const RecipeProvider = (props) => {
             .then(setRecipes)
     }
 
+    const addRecipe = recipe => {
+        return fetch("http://localhost:8088/recipes", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(recipe)
+        })
+            .then(getRecipes)
+    }
     /*
         Load all recipes when the component is mounted. Ensure that
         an empty array is the second argument to avoid infinite loop.
@@ -32,7 +42,7 @@ export const RecipeProvider = (props) => {
 
     return (
         <RecipeContext.Provider value={{
-            recipes
+            recipes, addRecipe
         }}>
             {props.children}
         </RecipeContext.Provider>
