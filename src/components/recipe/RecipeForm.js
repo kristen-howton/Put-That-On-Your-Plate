@@ -1,7 +1,7 @@
 import React, { useContext, useRef } from "react"
 import { RecipeContext } from "./RecipeProvider"
 
-export default props => {
+export const RecipeForm = () => {
     const { addRecipe } = useContext(RecipeContext)
 
     const name = useRef()
@@ -13,11 +13,12 @@ export default props => {
         // Make sure that the recipe object has the customerId and locationId foreign keys on it.
         const newRecipeObj = {
             name: name.current.value,
-            instructions: instructions.current.value
+            instructions: instructions.current.value,
+            userId: userId
         }
        
         // and save it to the API.
-        addRecipe(newRecipeObj).then(props.toggler)
+        addRecipe(newRecipeObj).then(RecipeForm.toggler)
     }
 
     return (

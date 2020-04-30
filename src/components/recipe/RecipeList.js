@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react"
 import { RecipeContext } from "./RecipeProvider"
 import { Recipe } from "./Recipe"
-import RecipeForm from "./RecipeForm"
+import { RecipeForm } from "./RecipeForm"
 import { Button, Modal, ModalBody, ModalHeader} from "reactstrap"
 
 export const RecipeList = () => {
@@ -13,10 +13,9 @@ export const RecipeList = () => {
 
     return (
         <>
-            <h2>Recipes</h2>
             <Button onClick={() => {
                 // check if the user is authenticated
-                const userId = localStorage.getItem("recipe__user")
+                const userId = localStorage.getItem("recipe_user")
                 if (userId) {
                     // If the user is authenticated, show the recipe form
                     toggle()
