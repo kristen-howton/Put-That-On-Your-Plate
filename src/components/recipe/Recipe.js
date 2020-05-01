@@ -1,11 +1,10 @@
-import React, { useState, useContext } from "react"
+import React, { useContext } from "react"
 import { Button } from "reactstrap"
 import { RecipeContext } from "./RecipeProvider"
 
 export const Recipe = ({ recipe }) => { 
 
-const { recipes, deleteRecipe } = useContext(RecipeContext)
-const [e, setRecipes] = useState({recipe: { id: 0 }, name: null, instruction: null } )  
+const { deleteRecipe } = useContext(RecipeContext)  
 
 return (
 
@@ -14,7 +13,6 @@ return (
         <div className="recipe__instructions">{recipe.instructions}</div>
         <Button color="danger" onClick={() => {
             deleteRecipe(recipe.id)
-            setRecipes(recipes)
         }}>Delete 🤢</Button>
     </section >
 )
