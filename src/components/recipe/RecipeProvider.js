@@ -28,6 +28,24 @@ export const RecipeProvider = (props) => {
         })
             .then(getRecipes)
     }
+
+    const deleteRecipe = recipeID => {
+        return fetch(`http://localhost:8088/recipes/${recipeID}`, {
+            method: "DELETE"
+        })
+            .then(getRecipes)
+    }
+
+    const updateRecipe = recipe => {
+        return fetch(`http://localhost:8088/recipes/${recipe.id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(recipe)
+        })
+            .then(getRecipes)
+    }
     /*
         Load all recipes when the component is mounted. Ensure that
         an empty array is the second argument to avoid infinite loop.
@@ -42,7 +60,7 @@ export const RecipeProvider = (props) => {
 
     return (
         <RecipeContext.Provider value={{
-            recipes, addRecipe
+            recipes, addRecipe, deleteRecipe, updateRecipe
         }}>
             {props.children}
         </RecipeContext.Provider>
