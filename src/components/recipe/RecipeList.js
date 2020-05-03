@@ -1,15 +1,27 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, useState, useEffect } from "react"
 import { RecipeContext } from "./RecipeProvider"
 import { Recipe } from "./Recipe"
 import { RecipeForm } from "./RecipeForm"
 import { Button, Modal, ModalBody, ModalHeader} from "reactstrap"
 
-export const RecipeList = () => {
+export const RecipeList = ( {searchTerms} ) => {
     const { recipes } = useContext(RecipeContext)
 
     const [modal, setModal] = useState(false)
     const toggle = () => setModal(!modal)
+    const [matchingRecipe, setFiltered] = useState([])
 
+    useEffect(
+        () => {
+            if (searchTerms !== "") {
+                const subset = recipes.filter(recipe => recipe.name.toLowerCase().includes(searchTerms))
+                setFiltered(subset)
+            } else {
+                setFiltered(recipes)
+            }
+        },
+        [searchTerms, recipes]
+    )
 
     return (
         <>
@@ -23,7 +35,7 @@ export const RecipeList = () => {
             }}>Add Recipe</Button>
             <div className="recipes">
                 {
-                    recipes.map(rec => <Recipe key={rec.id} recipe={rec} />)
+                    matchingRecipe.map(rec => <Recipe key={rec.id} recipe={rec} />)
                 }
             </div>
 
@@ -35,6 +47,7 @@ export const RecipeList = () => {
                     <RecipeForm toggler={toggle} />
                 </ModalBody>
             </Modal>
+            
         </>
     )
 }
