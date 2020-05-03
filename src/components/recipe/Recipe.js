@@ -19,7 +19,7 @@ export const Recipe = ({ recipe }) => {
             }}>Edit</Button>
             <Button color="danger" onClick={() => {
                 deleteRecipe(recipe.id)
-            }}>Delete🤢</Button>
+            }}>Delete</Button>
             <Modal isOpen={editModal} toggle={toggleEdit}>
                 <ModalHeader toggle={toggleEdit}>
                     {recipe.name}
