@@ -7,9 +7,9 @@ import React, { useState, useEffect } from "react"
 export const RecipeContext = React.createContext()
 
 /*
- This component establishes what data can be used.
+    This component establishes what data can be used.
  */
-export const RecipeProvider = (props) => {
+export const RecipeProvider = props => {
     const [recipes, setRecipes] = useState([])
 
     const getRecipes = () => {
@@ -29,8 +29,8 @@ export const RecipeProvider = (props) => {
             .then(getRecipes)
     }
 
-    const deleteRecipe = recipeID => {
-        return fetch(`http://localhost:8088/recipes/${recipeID}`, {
+    const deleteRecipe = recipeId => {
+        return fetch(`http://localhost:8088/recipes/${recipeId}`, {
             method: "DELETE"
         })
             .then(getRecipes)

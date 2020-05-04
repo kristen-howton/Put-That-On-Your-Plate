@@ -5,8 +5,11 @@
   }
   
   .recipe {
-      flex-basis: 28%;
       margin: 1em;
-      padding: 1em;
-      border: 1px solid rgb(28, 66, 92);
+      padding:5em;
+      border: 4px solid rgb(40, 104, 146);
   }
+
+  .recipe__name {
+    border-bottom: 4px solid rgb(40, 104, 146);
+}
