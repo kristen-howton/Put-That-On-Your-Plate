@@ -13,6 +13,7 @@ export const RecipeType = ( {setRecipeType} ) => {
             ref={selectedRecipeType}
             id="recipeType"
             className="form-control"
+            required
         >
             <option value="0">Select a type</option>
             {recipeTypes.map(recipeType => (
