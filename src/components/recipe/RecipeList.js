@@ -5,25 +5,30 @@ import { RecipeForm } from "./RecipeForm"
 import { Button, Modal, ModalBody, ModalHeader} from "reactstrap"
 import "./Recipe.css"
 
-export const RecipeList = ( {searchTerms} ) => {
+export const RecipeList = ( {searchTerms, recipeType} ) => {
     const { recipes } = useContext(RecipeContext)
 
     const [modal, setModal] = useState(false)
     const toggle = () => setModal(!modal)
-    const [matchingRecipe, setFiltered] = useState([])
+    const [matchingRecipes, setMatchingRecipes] = useState([])
     let activeUser = parseInt(localStorage.getItem("recipe_user"))
     useEffect(
         () => {
-            const recipesForThisUser = recipes.filter(recipe => {
+            let filteredRecipes = recipes.filter(recipe => {
                 return activeUser === recipe.userId })
-            if (searchTerms !== "") {
-                const subset = recipesForThisUser.filter(recipe => recipe.name.toLowerCase().includes(searchTerms))
-                setFiltered(subset)
-            } else {
-                setFiltered(recipesForThisUser)
+
+            if(searchTerms !== ""){
+                filteredRecipes = filteredRecipes.filter(recipe => recipe.name.toLowerCase().includes(searchTerms))
             }
-        },
-        [searchTerms, recipes]
+
+            if(recipeType !== "0"){
+                filteredRecipes = filteredRecipes.filter(recipe => recipe.recipeTypeId === parseInt(recipeType))
+            }
+
+            setMatchingRecipes(filteredRecipes)
+
+     },
+        [searchTerms, recipes, recipeType]
     )
     
     return (
@@ -38,7 +43,7 @@ export const RecipeList = ( {searchTerms} ) => {
            
             <div className="recipes">
                 {
-                    matchingRecipe.map(rec => <Recipe key={rec.id} recipe={rec} />)
+                    matchingRecipes.map(rec => <Recipe key={rec.id} recipe={rec} />)
                 }
             </div>
 

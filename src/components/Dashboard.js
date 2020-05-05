@@ -10,6 +10,7 @@ import { RecipeType } from "./recipeTypes/RecipeTypeDropdown.js"
 export const Dashboard = () => {
 
     const [searchTerms, setTerms] = useState("")
+    const [recipeType, setRecipeType] = useState("0")
 
     return (
         <div className="mainContainer">
@@ -17,8 +18,9 @@ export const Dashboard = () => {
             <div className="searchContainer">
                 <RecipeProvider>
                     <RecipeTypeProvider> 
-                        <RecipeType /> 
-                        <RecipeList searchTerms={searchTerms} />
+                        <RecipeType setRecipeType={setRecipeType}/> 
+                        <RecipeList searchTerms={searchTerms}
+                                    recipeType={recipeType}/>
                         <SearchBar setTerms={setTerms} /> 
                     </RecipeTypeProvider>
                 </RecipeProvider>

@@ -5,11 +5,17 @@
   }
   
   .recipe {
-      margin: 1em;
-      padding:5em;
+      margin: 0.5em;
+      padding:0.5em;
       border: 4px solid rgb(40, 104, 146);
   }
 
   .recipe__name {
+    margin: 1em;
+    padding:0.5em;
     border-bottom: 4px solid rgb(40, 104, 146);
+}
+
+.recipeEditButton {
+    margin: 2em;
 }

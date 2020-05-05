@@ -1,7 +1,9 @@
-import React, { useContext, useRef } from "react"
+import React, { useContext, useRef, useState } from "react"
 import { RecipeContext } from "./RecipeProvider"
+import { RecipeType } from "../recipeTypes/RecipeTypeDropdown.js"
 
 export const RecipeForm = () => {
+    const [recipeType, setRecipeType] = useState("0")
     const { addRecipe } = useContext(RecipeContext)
 
     const name = useRef()
@@ -9,11 +11,13 @@ export const RecipeForm = () => {
 
     const constructNewRecipe = () => {
         const userId = parseInt(localStorage.getItem("recipe_user"))
+        const recipeTypeId = parseInt(recipeType)
         // create a new recipe object  
-        // Make sure that the recipe object has the customerId and locationId foreign keys on it.
+
         const newRecipeObj = {
             name: name.current.value,
             instructions: instructions.current.value,
+            recipeTypeId: recipeTypeId,
             userId: userId
         }
        
@@ -48,10 +52,12 @@ export const RecipeForm = () => {
                         required
                         autoFocus
                         className="form-control"
-                        placeholder="recipe intructions"
+                        placeholder="recipe instructions"
                     />
                 </div>
             </fieldset>
+
+            <RecipeType setRecipeType={setRecipeType}/> 
            
             <button type="submit"
                 onClick={

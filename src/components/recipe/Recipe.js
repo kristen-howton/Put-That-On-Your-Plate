@@ -14,7 +14,7 @@ export const Recipe = ({ recipe }) => {
         < section className="recipe" >
             <h3 className="recipe__name">{recipe.name}</h3>
             <div className="recipe__instructions">Instructions: {recipe.instructions}</div>
-            <Button color="info" onClick={() => {
+            <Button color="info" className="recipeEditButton" onClick={() => {
                 toggleEdit()
             }}>Edit</Button>
             <Button color="danger" onClick={() => {
