@@ -12,9 +12,9 @@ export const Recipe = ({ recipe }) => {
 
     return (
         < section className="recipe" >
-            <h3 className="recipe">{recipe.name}</h3>
-            <div className="recipe__instructions">{recipe.instructions}</div>
-            <Button color="info" onClick={() => {
+            <h3 className="recipe__name">{recipe.name}</h3>
+            <div className="recipe__instructions">Instructions: {recipe.instructions}</div>
+            <Button color="info" className="recipeEditButton" onClick={() => {
                 toggleEdit()
             }}>Edit</Button>
             <Button color="danger" onClick={() => {

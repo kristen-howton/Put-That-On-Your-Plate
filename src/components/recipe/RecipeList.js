@@ -3,39 +3,47 @@ import { RecipeContext } from "./RecipeProvider"
 import { Recipe } from "./Recipe"
 import { RecipeForm } from "./RecipeForm"
 import { Button, Modal, ModalBody, ModalHeader} from "reactstrap"
+import "./Recipe.css"
 
-export const RecipeList = ( {searchTerms} ) => {
+export const RecipeList = ( {searchTerms, recipeType} ) => {
     const { recipes } = useContext(RecipeContext)
 
     const [modal, setModal] = useState(false)
     const toggle = () => setModal(!modal)
-    const [matchingRecipe, setFiltered] = useState([])
-
+    const [matchingRecipes, setMatchingRecipes] = useState([])
+    let activeUser = parseInt(localStorage.getItem("recipe_user"))
     useEffect(
         () => {
-            if (searchTerms !== "") {
-                const subset = recipes.filter(recipe => recipe.name.toLowerCase().includes(searchTerms))
-                setFiltered(subset)
-            } else {
-                setFiltered(recipes)
-            }
-        },
-        [searchTerms, recipes]
-    )
+            let filteredRecipes = recipes.filter(recipe => {
+                return activeUser === recipe.userId })
 
+            if(searchTerms !== ""){
+                filteredRecipes = filteredRecipes.filter(recipe => recipe.name.toLowerCase().includes(searchTerms))
+            }
+
+            if(recipeType !== "0"){
+                filteredRecipes = filteredRecipes.filter(recipe => recipe.recipeTypeId === parseInt(recipeType))
+            }
+
+            setMatchingRecipes(filteredRecipes)
+
+     },
+        [searchTerms, recipes, recipeType]
+    )
+    
     return (
         <>
             <Button onClick={() => {
                 // check if the user is authenticated
-                const userId = localStorage.getItem("recipe_user")
-                if (userId) {
-                    // If the user is authenticated, show the recipe form
-                    toggle()
-                }
-            }}>Add Recipe</Button>
+                    if (activeUser) {
+                        // If the user is authenticated, show the recipe form
+                        toggle()
+                    }
+                }}>Add Recipe</Button>
+           
             <div className="recipes">
                 {
-                    matchingRecipe.map(rec => <Recipe key={rec.id} recipe={rec} />)
+                    matchingRecipes.map(rec => <Recipe key={rec.id} recipe={rec} />)
                 }
             </div>
 
