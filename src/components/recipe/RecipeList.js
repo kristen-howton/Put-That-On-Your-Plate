@@ -15,7 +15,7 @@ export const RecipeList = ( {searchTerms, recipeType, activeUser} ) => {
     useEffect(
         () => {
             let filteredRecipes = recipes.filter(recipe => {
-                return activeUser === recipe.userId })
+                return parseInt(activeUser) === recipe.userId })
 
             if(searchTerms !== ""){
                 filteredRecipes = filteredRecipes.filter(recipe => recipe.name.toLowerCase().includes(searchTerms))
