@@ -1,8 +1,10 @@
 import React, { useContext, useState } from "react"
 import { RecipeContext } from "./RecipeProvider"
+import { RecipeType } from "../recipeTypes/RecipeTypeDropdown.js"
 
 export const EditRecipeForm = ({ recipe, toggleEdit }) => {
     const { updateRecipe } = useContext(RecipeContext)
+    const [recipeType, setRecipeType] = useState("0")
 
     // Separate state variable to track the recipe as it is edited
     const [updatedRecipe, setRecipe] = useState(recipe)
@@ -23,17 +25,20 @@ export const EditRecipeForm = ({ recipe, toggleEdit }) => {
     }
 
     const editRecipe = () => {
+        const userId = parseInt(localStorage.getItem("recipe_user"))
+        const recipeTypeId = parseInt(recipeType)
 
         updateRecipe({
             id: updatedRecipe.id,
             name: updatedRecipe.name,
             instructions: updatedRecipe.instructions,
-            userId: parseInt(localStorage.getItem("recipe_user"))
+            userId: userId,
+            recipeTypeId: recipeTypeId,
+            isFavorite: false
 
         })
             .then(toggleEdit)
     }
-
 
     return (
         <form className="recipeForm">
@@ -47,6 +52,7 @@ export const EditRecipeForm = ({ recipe, toggleEdit }) => {
                     />
                 </div>
             </fieldset>
+
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="recipe">Recipe instructions: </label>
@@ -57,6 +63,8 @@ export const EditRecipeForm = ({ recipe, toggleEdit }) => {
                     />
                 </div>
             </fieldset>
+
+            <RecipeType setRecipeType={setRecipeType}/> 
 
             <button type="submit" className="btn btn-primary"
                 onClick={evt => {

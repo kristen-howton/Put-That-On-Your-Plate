@@ -18,6 +18,7 @@ export const RecipeForm = () => {
             name: name.current.value,
             instructions: instructions.current.value,
             recipeTypeId: recipeTypeId,
+            isFavorite: false,
             userId: userId
         }
        
