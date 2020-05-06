@@ -5,17 +5,18 @@ import { RecipeForm } from "./RecipeForm"
 import { Button, Modal, ModalBody, ModalHeader} from "reactstrap"
 import "./Recipe.css"
 
-export const RecipeList = ( {searchTerms, recipeType} ) => {
+export const RecipeList = ( {searchTerms, recipeType, activeUser} ) => {
     const { recipes } = useContext(RecipeContext)
 
     const [modal, setModal] = useState(false)
     const toggle = () => setModal(!modal)
     const [matchingRecipes, setMatchingRecipes] = useState([])
-    let activeUser = parseInt(localStorage.getItem("recipe_user"))
+    
     useEffect(
         () => {
-            
-            let filteredRecipes = recipes.slice()
+            let filteredRecipes = recipes.filter(recipe => {
+                return activeUser === recipe.userId })
+
             if(searchTerms !== ""){
                 filteredRecipes = filteredRecipes.filter(recipe => recipe.name.toLowerCase().includes(searchTerms))
             }
@@ -27,7 +28,7 @@ export const RecipeList = ( {searchTerms, recipeType} ) => {
             setMatchingRecipes(filteredRecipes)
 
      },
-        [searchTerms, recipes, recipeType]
+        [searchTerms, recipes, recipeType, activeUser]
     )
     
     return (

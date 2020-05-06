@@ -3,10 +3,9 @@ import Auth from "./auth/Auth"
 import { Dashboard } from "./Dashboard"
 
 export const Recipes = () => {
-    const [check, update] = useState(false)
-    const toggle = () => update(!check)
+    const [activeUser, setActiveUser] = useState(localStorage.getItem("recipe_user"))
 
     return (
-        localStorage.getItem("recipe_user") ? <Dashboard /> : <Auth toggle={toggle} />
+        activeUser ? <Dashboard activeUser={activeUser} /> : <Auth setActiveUser={setActiveUser} />
     )
 }

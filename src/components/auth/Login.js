@@ -22,7 +22,7 @@ const Login = props => {
             .then(exists => {
                 if (exists && exists.password === password.current.value) {
                     localStorage.setItem("recipe_user", exists.id)
-                    props.toggle()
+                    props.setActiveUser(exists.id)
                 } else if (exists && exists.password !== password.current.value) {
                     window.alert("Password does not match")
                 } else if (!exists) {

@@ -40,7 +40,7 @@ const Register = props => {
                         .then(createdUser => {
                             if (createdUser.hasOwnProperty("id")) {
                                 localStorage.setItem("recipe_user", createdUser.id)
-                                props.toggle()
+                                props.setActiveUser(createdUser.id)
                             }
                         })
                 })
