@@ -4,13 +4,13 @@ import Register from "./Register"
 import "./Auth.css"
 
 
-export default ({toggle}) => {
+export default ({setActiveUser}) => {
     return (
         <>
             <h1 className="welcome">Welcome to Recipes!</h1>
             <div className="authContainer">
-                <Login toggle={toggle} />
-                <Register toggle={toggle} />
+                <Login setActiveUser={setActiveUser} />
+                <Register setActiveUser={setActiveUser} />
             </div>
         </>
     )

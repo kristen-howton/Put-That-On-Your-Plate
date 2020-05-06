@@ -7,7 +7,7 @@ import "./Layout.css"
 import { RecipeTypeProvider } from "./recipeTypes/RecipeTypeProvider"
 import { RecipeType } from "./recipeTypes/RecipeTypeDropdown.js"
 
-export const Dashboard = () => {
+export const Dashboard = ({activeUser}) => {
 
     const [searchTerms, setTerms] = useState("")
     const [recipeType, setRecipeType] = useState("0")
@@ -20,7 +20,8 @@ export const Dashboard = () => {
                     <RecipeTypeProvider> 
                         <RecipeType setRecipeType={setRecipeType}/> 
                         <RecipeList searchTerms={searchTerms}
-                                    recipeType={recipeType}/>
+                                    recipeType={recipeType}
+                                    activeUser={activeUser}/>
                         <SearchBar setTerms={setTerms} /> 
                     </RecipeTypeProvider>
                 </RecipeProvider>
