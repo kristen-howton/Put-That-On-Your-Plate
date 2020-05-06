@@ -14,9 +14,8 @@ export const RecipeList = ( {searchTerms, recipeType} ) => {
     let activeUser = parseInt(localStorage.getItem("recipe_user"))
     useEffect(
         () => {
-            let filteredRecipes = recipes.filter(recipe => {
-                return activeUser === recipe.userId })
-
+            
+            let filteredRecipes = recipes.slice()
             if(searchTerms !== ""){
                 filteredRecipes = filteredRecipes.filter(recipe => recipe.name.toLowerCase().includes(searchTerms))
             }
