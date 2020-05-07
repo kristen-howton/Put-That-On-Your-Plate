@@ -4,7 +4,7 @@ import Register from "./Register"
 import "./Auth.css"
 
 
-export default ({setActiveUser}) => {
+export const Auth = ( {setActiveUser} ) => {
     return (
         <>
             <h1 className="welcome">Put that on your plate!</h1>
