@@ -1,4 +1,5 @@
 import React, { useRef } from "react"
+import { Button } from "reactstrap"
 
 const Login = props => {
     const email = useRef()
@@ -52,9 +53,9 @@ const Login = props => {
                         required />
                 </fieldset>
                 <fieldset>
-                    <button type="submit">
+                    <Button type="submit">
                         Sign in
-                    </button>
+                    </Button>
                 </fieldset>
             </form>
         </div>

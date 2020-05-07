@@ -34,11 +34,8 @@ export const RecipeList = ( {searchTerms, recipeType, activeUser} ) => {
     return (
         <>
             <Button onClick={() => {
-                // check if the user is authenticated
-                    if (activeUser) {
-                        // If the user is authenticated, show the recipe form
-                        toggle()
-                    }
+                    // Show the recipe form
+                    toggle()
                 }}>Add Recipe</Button>
            
             <div className="recipes">
