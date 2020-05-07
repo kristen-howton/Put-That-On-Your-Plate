@@ -7,7 +7,7 @@ import "./Layout.css"
 import { RecipeTypeProvider } from "./recipeTypes/RecipeTypeProvider"
 import { RecipeType } from "./recipeTypes/RecipeTypeDropdown.js"
 
-export const Dashboard = ({activeUser}) => {
+export const Dashboard = ( {activeUser} ) => {
 
     const [searchTerms, setTerms] = useState("")
     const [recipeType, setRecipeType] = useState("0")

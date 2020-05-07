@@ -1,5 +1,6 @@
 import React, { useRef } from "react"
 import "./Login.css"
+import { Button } from "reactstrap"
 
 const Register = props => {
     const firstName = useRef()
@@ -52,7 +53,7 @@ const Register = props => {
     return (
         <main className="container--login">
             <form className="form--register" onSubmit={handleRegister}>
-                <h4 className="darkgray">If you are not a user yet, please register a new account</h4>
+                <h2 className="darkgray">If you are not a user yet, please register a new account</h2>
                 <fieldset>
                     <label htmlFor="firstName"> First Name </label>
                     <input ref={firstName} type="text"
@@ -94,9 +95,9 @@ const Register = props => {
                         required />
                 </fieldset>
                 <fieldset>
-                    <button type="submit">
+                    <Button type="submit">
                         Sign in
-                    </button>
+                    </Button>
                 </fieldset>
             </form>
         </main>
