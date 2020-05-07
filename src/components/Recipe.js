@@ -10,7 +10,7 @@ export const Recipes = () => {
         return (
             <>
                 <Button onClick={() => {
-                    setActiveUser("")
+                    setActiveUser(null)
                     localStorage.setItem("recipe_user", "")
                 }}>Log Off</Button>
                 <Dashboard activeUser={activeUser} />
