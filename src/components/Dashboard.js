@@ -14,18 +14,18 @@ export const Dashboard = ({activeUser}) => {
 
     return (
         <div className="mainContainer">
-            <h2>Put that on your plate!</h2>
+            <div class="pageTitle">Put that on your plate!</div>
             <div className="searchContainer">
                 <RecipeProvider>
                     <RecipeTypeProvider> 
+                        <SearchBar setTerms={setTerms} />
                         <RecipeType setRecipeType={setRecipeType}/> 
                         <RecipeList searchTerms={searchTerms}
                                     recipeType={recipeType}
-                                    activeUser={activeUser}/>
-                        <SearchBar setTerms={setTerms} /> 
+                                    activeUser={activeUser}/> 
                     </RecipeTypeProvider>
                 </RecipeProvider>
-            </div>
+            </div>      
         </div>
     )
 }

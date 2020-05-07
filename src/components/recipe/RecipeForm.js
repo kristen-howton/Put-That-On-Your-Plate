@@ -1,6 +1,7 @@
 import React, { useContext, useRef, useState } from "react"
 import { RecipeContext } from "./RecipeProvider"
 import { RecipeType } from "../recipeTypes/RecipeTypeDropdown.js"
+import { Button, Form, Label, Input } from "reactstrap"
 
 export const RecipeForm = () => {
     const [recipeType, setRecipeType] = useState("0")
@@ -27,10 +28,10 @@ export const RecipeForm = () => {
     }
 
     return (
-        <form className="recipeForm">
+        <Form className="recipeForm">
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="recipeName">Name of Recipe: </label>
+                    <Label htmlFor="recipeName">Name of Recipe: </Label>
                     <input
                         type="text"
                         id="recipeName"
@@ -45,9 +46,9 @@ export const RecipeForm = () => {
 
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="recipeInstructions">Instructions: </label>
-                    <input
-                        type="text"
+                    <Label htmlFor="recipeInstructions">Instructions: </Label>
+                    <Input 
+                        type="textarea"
                         id="recipeInstructions"
                         ref={instructions}
                         required
@@ -60,7 +61,7 @@ export const RecipeForm = () => {
 
             <RecipeType setRecipeType={setRecipeType}/> 
            
-            <button type="submit"
+            <Button type="submit"
                 onClick={
                     evt => {
                         evt.preventDefault() // Prevent browser from submitting the form
@@ -70,7 +71,7 @@ export const RecipeForm = () => {
                 }
                 className="btn btn-primary">
                 Add Recipe
-            </button>
-        </form>
+            </Button>
+        </Form>
     )
 }
