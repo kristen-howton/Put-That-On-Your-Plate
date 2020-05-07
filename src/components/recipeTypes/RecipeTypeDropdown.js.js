@@ -1,4 +1,4 @@
-import React, { useRef, useContext } from 'react'
+import React, { useContext } from 'react'
 import { RecipeTypeContext } from './RecipeTypeProvider'
 
 export const RecipeType = ( {setRecipeType} ) => {
