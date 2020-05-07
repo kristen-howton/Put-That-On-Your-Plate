@@ -49,7 +49,7 @@ export const RecipeList = ( {searchTerms, recipeType, activeUser} ) => {
 
             <Modal isOpen={modal} toggle={toggle}>
                 <ModalHeader toggle={toggle}>
-                    Submit
+                    Create New Recipe
                 </ModalHeader>
                 <ModalBody>
                     <RecipeForm toggler={toggle} />

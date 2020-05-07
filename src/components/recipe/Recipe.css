@@ -7,8 +7,9 @@
   .recipe {
       margin: 0.5em;
       padding:0.5em;
-      border: 4px solid rgb(40, 104, 146);
+      border: 2px solid rgb(40, 104, 146);
       border-radius: 1em;
+      background-color: whitesmoke;
   }
 
   .recipe__name {

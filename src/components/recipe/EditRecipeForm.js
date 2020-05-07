@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react"
 import { RecipeContext } from "./RecipeProvider"
 import { RecipeType } from "../recipeTypes/RecipeTypeDropdown.js"
+import { Button, Input, FormGroup, Label } from "reactstrap"
 
 export const EditRecipeForm = ({ recipe, toggleEdit }) => {
     const { updateRecipe } = useContext(RecipeContext)
@@ -41,11 +42,11 @@ export const EditRecipeForm = ({ recipe, toggleEdit }) => {
     }
 
     return (
-        <form className="recipeForm">
+        <FormGroup className="recipeForm">
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="name">Recipe name: </label>
-                    <input type="text" name="name" required autoFocus className="form-control"
+                    <Label for="name">Recipe name: </Label>
+                    <Input type="text" name="name" required autoFocus className="form-control"
                         placeholder="Recipe name"
                         defaultValue={recipe.name}
                         onChange={handleControlledInputChange}
@@ -55,24 +56,25 @@ export const EditRecipeForm = ({ recipe, toggleEdit }) => {
 
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="recipe">Recipe instructions: </label>
-                    <input type="text" name="instructions" required className="form-control"
+                    <Label for="recipe">Recipe instructions: </Label>
+                    <Input type="textarea" id="recipe__instructions"
+                        name="instructions" required className="form-control"
                         placeholder="Recipe instructions"
                         defaultValue={recipe.instructions}
-                        onChange={handleControlledInputChange}
-                    />
+                        onChange={handleControlledInputChange}/>
+
                 </div>
             </fieldset>
 
-            <RecipeType setRecipeType={setRecipeType}/> 
+            <RecipeType setRecipeType={setRecipeType} />
 
-            <button type="submit" className="btn btn-primary"
+            <Button type="submit" className="btn btn-primary"
                 onClick={evt => {
                     evt.preventDefault()
                     editRecipe()
                 }}>
                 Save Changes
-            </button>
-        </form>
+            </Button>
+        </FormGroup>
     )
 }

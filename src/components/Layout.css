@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
+
 .searchContainer {
     display: flex;
     flex-direction: column;
@@ -5,7 +7,13 @@
     padding: 2rem;
 } 
 
-/* body {
-    background: url(https://image.shutterstock.com/image-photo/light-blue-textured-bakery-recipe-600w-454826119.jpg) no-repeat center center fixed;
-    background-size: cover;
-} */
+body {
+    background-color: rgba(197, 203, 206, 0.883) !important;
+}
+
+.pageTitle {
+    color: rgb(40, 104, 146);
+    font-family: 'Amatic SC', cursive;
+    text-align: center;
+    font-size: 7em;
+}

@@ -8,11 +8,12 @@ export const Recipes = () => {
 
     return (
         <>
-            {activeUser ? <Dashboard activeUser={activeUser} /> : <Auth setActiveUser={setActiveUser} />}
             <Button onClick={() => {
                 setActiveUser(null)
                 localStorage.setItem("recipe_user", null)
             }}>Log Off</Button>
+            {activeUser ? <Dashboard activeUser={activeUser} /> : <Auth setActiveUser={setActiveUser} />}
+
         </>
     )
 }
