@@ -58,7 +58,9 @@ export const EditRecipeForm = ({ recipe, toggleEdit }) => {
                 <div className="form-group">
                     <Label for="recipe">Recipe instructions: </Label>
                     <Input type="textarea" id="recipe__instructions"
-                        name="instructions" required className="form-control"
+                        name="instructions" 
+                        required 
+                        className="form-control"
                         placeholder="Recipe instructions"
                         defaultValue={recipe.instructions}
                         onChange={handleControlledInputChange}/>

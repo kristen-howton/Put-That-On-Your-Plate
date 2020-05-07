@@ -4,6 +4,7 @@ import { Dashboard } from "./Dashboard"
 import { Button } from "reactstrap"
 
 export const Recipes = () => {
+    
     const [activeUser, setActiveUser] = useState(localStorage.getItem("recipe_user") || "")
 
     if (activeUser) {

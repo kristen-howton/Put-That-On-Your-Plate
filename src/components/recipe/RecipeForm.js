@@ -1,7 +1,7 @@
 import React, { useContext, useRef, useState } from "react"
 import { RecipeContext } from "./RecipeProvider"
 import { RecipeType } from "../recipeTypes/RecipeTypeDropdown.js"
-import { Button, Form, Label, Input } from "reactstrap"
+import { Button, Label, Input, FormGroup } from "reactstrap"
 
 export const RecipeForm = () => {
     const [recipeType, setRecipeType] = useState("0")
@@ -28,14 +28,15 @@ export const RecipeForm = () => {
     }
 
     return (
-        <Form className="recipeForm">
+        <FormGroup className="recipeForm">
             <fieldset>
                 <div className="form-group">
-                    <Label htmlFor="recipeName">Name of Recipe: </Label>
-                    <input
+                    <Label for="recipeName">Name of Recipe: </Label>
+                    <Input
                         type="text"
+                        name="recipeName"
                         id="recipeName"
-                        ref={name}
+                        innerRef={name}
                         required
                         autoFocus
                         className="form-control"
@@ -46,11 +47,12 @@ export const RecipeForm = () => {
 
             <fieldset>
                 <div className="form-group">
-                    <Label htmlFor="recipeInstructions">Instructions: </Label>
+                    <Label for="recipeInstructions">Instructions: </Label>
                     <Input 
                         type="textarea"
                         id="recipeInstructions"
-                        ref={instructions}
+                        name="recipeInstructions"
+                        innerRef={instructions}
                         required
                         autoFocus
                         className="form-control"
@@ -72,6 +74,6 @@ export const RecipeForm = () => {
                 className="btn btn-primary">
                 Add Recipe
             </Button>
-        </Form>
+        </FormGroup>
     )
 }

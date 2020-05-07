@@ -27,7 +27,7 @@ export const Recipe = ({ recipe }) => {
         < section className="recipe" >
             <h3 className="recipe__name">{recipe.name}</h3>
             <div className="recipe__instructions">{recipe.instructions}</div>
-            <Button className="recipeEditButton" color="info" onClick={() => {
+            <Button className="recipe__editbutton" color="info" onClick={() => {
                 toggleEdit()
             }}>Edit</Button>
             <Button color="danger" onClick={() => {
@@ -42,7 +42,7 @@ export const Recipe = ({ recipe }) => {
                 </ModalBody>
             </Modal>
 
-            <div className="favorite"> </div>
+            <div className="recipe__favorite"> </div>
             <Button color = "translucent" onClick={toggleFavorite}>{ isFavorite ? "❤️" : "♡"  } </Button>
         </section >
     )
