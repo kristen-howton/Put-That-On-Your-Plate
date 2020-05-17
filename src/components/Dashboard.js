@@ -18,11 +18,13 @@ export const Dashboard = ( {activeUser} ) => {
             <div className="searchContainer">
                 <RecipeProvider>
                     <RecipeTypeProvider> 
-                        <SearchBar setTerms={setTerms} />
-                        <RecipeType setRecipeType={setRecipeType}/> 
-                        <RecipeList searchTerms={searchTerms}
-                                    recipeType={recipeType}
-                                    activeUser={activeUser}/> 
+                        <div className="displayContainer">
+                            <SearchBar setTerms={setTerms} />
+                            <RecipeType setRecipeType={setRecipeType}/> 
+                        </div>
+                            <RecipeList searchTerms={searchTerms}
+                                        recipeType={recipeType}
+                                        activeUser={activeUser}/> 
                     </RecipeTypeProvider>
                 </RecipeProvider>
             </div>      

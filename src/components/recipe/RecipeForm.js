@@ -9,10 +9,26 @@ export const RecipeForm = () => {
 
     const name = useRef()
     const instructions = useRef()
+    const image = useRef()
+    const ingredients = useRef()
 
-    const constructNewRecipe = () => {
+    const constructNewRecipe = async () => {
         const userId = parseInt(localStorage.getItem("recipe_user"))
         const recipeTypeId = parseInt(recipeType)
+        const files = image.current.files
+        const data = new FormData()
+        data.append('file', files[0])
+        data.append('upload_preset', "recipes")
+
+        const res = await fetch(
+            'https://api.cloudinary.com/v1_1/dkwjvcieo/image/upload',
+            {
+                method: 'POST',
+                body: data
+            }
+        )
+        const file = await res.json()
+
         // create a new recipe object  
 
         const newRecipeObj = {
@@ -20,6 +36,8 @@ export const RecipeForm = () => {
             instructions: instructions.current.value,
             recipeTypeId: recipeTypeId,
             isFavorite: false,
+            ingredients: ingredients.current.value,
+            image: file.secure_url,
             userId: userId
         }
        
@@ -47,6 +65,22 @@ export const RecipeForm = () => {
 
             <fieldset>
                 <div className="form-group">
+                    <Label for="recipeIngredients">Ingredients: </Label>
+                    <Input 
+                        type="textarea"
+                        id="recipeIngredients"
+                        name="recipeIngredients"
+                        innerRef={ingredients}
+                        required
+                        autoFocus
+                        className="form-control"
+                        placeholder="recipe ingredients"
+                    />
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <div className="form-group">
                     <Label for="recipeInstructions">Instructions: </Label>
                     <Input 
                         type="textarea"
@@ -61,8 +95,24 @@ export const RecipeForm = () => {
                 </div>
             </fieldset>
 
+            <fieldset>
+                <div className="form-group">
+                    <Label for="recipeImage">Image: </Label>
+                    <Input 
+                        type="file"
+                        id="recipeImage"
+                        name=""
+                        innerRef={image}
+                        required
+                        autoFocus
+                        className="form-control"
+                        placeholder="recipe image"
+                    />
+                </div>
+            </fieldset>
+
             <RecipeType setRecipeType={setRecipeType}/> 
-           
+
             <Button type="submit"
                 onClick={
                     evt => {

@@ -23,7 +23,7 @@ export const RecipeList = ({ searchTerms, recipeType, activeUser }) => {
             })
 
             if (searchTerms !== "") {
-                filteredRecipes = filteredRecipes.filter(recipe => recipe.name.toLowerCase().includes(searchTerms))
+                filteredRecipes = filteredRecipes.filter(recipe => recipe.name.toLowerCase().includes(searchTerms.toLowerCase()))
             }
 
             if (recipeType !== "0") {
@@ -42,15 +42,17 @@ export const RecipeList = ({ searchTerms, recipeType, activeUser }) => {
 
     return (
         <>
-            <Button className="addRecipeBtn" onClick={() => {
-                // Show the recipe form
-                toggle()
-            }}>Add Recipe</Button>
+            <article className="button__container">
+                <Button className="addRecipeBtn" onClick={() => {
+                    // Show the recipe form
+                    toggle()
+                }}>Add Recipe</Button>
 
-            <Button className="favoriteBtn" onClick={() => {
-                // Show the favorites
-                toggleFavorites()
-            }}>Show Favorites</Button>
+                <Button className="favoriteBtn" onClick={() => {
+                    // Show the favorites
+                    toggleFavorites()
+                }}>Show Favorites</Button>
+            </article>
 
             <div className="recipes">
                 {

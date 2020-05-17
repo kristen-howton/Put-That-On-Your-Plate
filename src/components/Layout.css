@@ -17,3 +17,8 @@ body {
     text-align: center;
     font-size: 7em;
 }
+
+.displayContainer {
+    justify-content: space-evenly;
+    display: flex;
+}

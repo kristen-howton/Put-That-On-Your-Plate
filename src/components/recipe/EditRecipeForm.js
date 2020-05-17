@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, useState, useRef } from "react"
 import { RecipeContext } from "./RecipeProvider"
 import { RecipeType } from "../recipeTypes/RecipeTypeDropdown.js"
 import { Button, Input, FormGroup, Label } from "reactstrap"
@@ -6,6 +6,7 @@ import { Button, Input, FormGroup, Label } from "reactstrap"
 export const EditRecipeForm = ({ recipe, toggleEdit }) => {
     const { updateRecipe } = useContext(RecipeContext)
     const [recipeType, setRecipeType] = useState("0")
+    const image = useRef()
 
     // Separate state variable to track the recipe as it is edited
     const [updatedRecipe, setRecipe] = useState(recipe)
@@ -25,9 +26,28 @@ export const EditRecipeForm = ({ recipe, toggleEdit }) => {
         setRecipe(newRecipe)
     }
 
-    const editRecipe = () => {
+    const editRecipe = async () => {
         const userId = parseInt(localStorage.getItem("recipe_user"))
         const recipeTypeId = parseInt(recipeType)
+        let secure_url = null
+        if(image.current.value){
+            const files = image.current.files
+            const data = new FormData()
+            data.append('file', files[0])
+            data.append('upload_preset', "recipes")
+
+            const res = await fetch(
+                'https://api.cloudinary.com/v1_1/dkwjvcieo/image/upload',
+                {
+                    method: 'POST',
+                    body: data
+                }
+            )
+            const file = await res.json()
+            secure_url = file.secure_url
+        } else {
+            secure_url = recipe.image
+        }
 
         updateRecipe({
             id: updatedRecipe.id,
@@ -35,7 +55,9 @@ export const EditRecipeForm = ({ recipe, toggleEdit }) => {
             instructions: updatedRecipe.instructions,
             userId: userId,
             recipeTypeId: recipeTypeId,
-            isFavorite: false
+            ingredients: updatedRecipe.ingredients,
+            image: secure_url,
+            isFavorite: recipe.isFavorite
 
         })
             .then(toggleEdit)
@@ -56,6 +78,20 @@ export const EditRecipeForm = ({ recipe, toggleEdit }) => {
 
             <fieldset>
                 <div className="form-group">
+                    <Label for="recipe">Recipe ingredients: </Label>
+                    <Input type="textarea" id="recipe__ingredients"
+                        name="ingredients" 
+                        required 
+                        className="form-control"
+                        placeholder="Recipe ingredients"
+                        defaultValue={recipe.ingredients}
+                        onChange={handleControlledInputChange}/>
+
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <div className="form-group">
                     <Label for="recipe">Recipe instructions: </Label>
                     <Input type="textarea" id="recipe__instructions"
                         name="instructions" 
@@ -63,6 +99,21 @@ export const EditRecipeForm = ({ recipe, toggleEdit }) => {
                         className="form-control"
                         placeholder="Recipe instructions"
                         defaultValue={recipe.instructions}
+                        onChange={handleControlledInputChange}/>
+
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <div className="form-group">
+                    <Label for="recipeImage">Recipe image: </Label>
+                    <Input type="file" 
+                        id="recipe__image"
+                        name="image" 
+                        required 
+                        className="form-control"
+                        placeholder="Recipe image"
+                        innerRef={image}
                         onChange={handleControlledInputChange}/>
 
                 </div>

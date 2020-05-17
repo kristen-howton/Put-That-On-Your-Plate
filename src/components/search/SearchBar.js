@@ -1,9 +1,10 @@
 import React from "react"
+import "./SearchBar.css"
 
 export const SearchBar = ({ setTerms }) => {
 
     return (
-        <fieldset>
+        <fieldset className="searchTermsBar">
             <div className="form-group">
                 <label htmlFor="searchTerms">Search:</label>
                 <input onKeyUp={ e => setTerms(e.target.value) }
