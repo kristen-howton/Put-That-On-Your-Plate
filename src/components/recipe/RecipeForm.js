@@ -3,7 +3,7 @@ import { RecipeContext } from "./RecipeProvider"
 import { RecipeType } from "../recipeTypes/RecipeTypeDropdown.js"
 import { Button, Label, Input, FormGroup } from "reactstrap"
 
-export const RecipeForm = () => {
+export const RecipeForm = ( {toggler} ) => {
     const [recipeType, setRecipeType] = useState("0")
     const { addRecipe } = useContext(RecipeContext)
 
@@ -42,7 +42,7 @@ export const RecipeForm = () => {
         }
        
         // and save it to the API.
-        addRecipe(newRecipeObj).then(RecipeForm.toggler)
+        addRecipe(newRecipeObj).then(toggler)
     }
 
     return (
