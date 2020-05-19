@@ -54,10 +54,6 @@ export const RecipeProvider = props => {
         getRecipes()
     }, [])
 
-    useEffect(() => {
-        console.log("****  RECIPE APPLICATION STATE CHANGED  ****")
-    }, [recipes])
-
     return (
         <RecipeContext.Provider value={{
             recipes, addRecipe, deleteRecipe, updateRecipe

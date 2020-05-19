@@ -119,7 +119,7 @@ export const EditRecipeForm = ({ recipe, toggleEdit }) => {
                 </div>
             </fieldset>
 
-            <RecipeType setRecipeType={setRecipeType} />
+            <RecipeType setRecipeType={setRecipeType} defaultValue={recipe.recipeTypeId} />
 
             <Button type="submit" className="btn btn-primary"
                 onClick={evt => {

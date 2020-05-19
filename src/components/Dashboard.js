@@ -14,7 +14,7 @@ export const Dashboard = ( {activeUser} ) => {
 
     return (
         <div className="mainContainer">
-            <div class="pageTitle">Put that on your plate!</div>
+            <div className="pageTitle">Put that on your plate!</div>
             <div className="searchContainer">
                 <RecipeProvider>
                     <RecipeTypeProvider> 
