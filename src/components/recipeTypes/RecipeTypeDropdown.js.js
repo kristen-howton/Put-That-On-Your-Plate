@@ -2,12 +2,12 @@ import React, { useContext } from 'react'
 import { RecipeTypeContext } from './RecipeTypeProvider'
 import "./SearchTypes.css"
 
-export const RecipeType = ( props, {setRecipeType} ) => {
+export const RecipeType = ( props ) => {
     const { recipeTypes } = useContext(RecipeTypeContext)
     return (
     <div className="form-group recipeDropdown">
         <label htmlFor="recipeType">Recipe Type: </label>
-        <select onChange ={e => setRecipeType(e.target.value) }
+        <select onChange ={e => props.setRecipeType(e.target.value) }
             defaultValue={props.defaultValue}
             id="recipeType"
             className="form-control"
