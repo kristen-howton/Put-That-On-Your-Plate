@@ -4,6 +4,9 @@ import "./SearchTypes.css"
 
 export const RecipeType = ( props ) => {
     const { recipeTypes } = useContext(RecipeTypeContext)
+    if(props.defaultValue){
+        props.setRecipeType(props.defaultValue)
+    }
     return (
     <div className="form-group recipeDropdown">
         <label htmlFor="recipeType">Recipe Type: </label>
