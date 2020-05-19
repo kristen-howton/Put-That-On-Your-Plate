@@ -32,7 +32,7 @@ export const Recipe = ({ recipe }) => {
                 <section className="recipe__textContainer">
                     <div className="recipe__ingredients"><strong>Ingredients: </strong>{recipe.ingredients}</div>
                     <div className="recipe__instructions"><strong>Instructions: </strong>{recipe.instructions}</div>
-                    <section class="recipe__buttonContainer">
+                    <section className="recipe__buttonContainer">
                         <Button className="recipe__editbutton" onClick={() => {
                             toggleEdit()
                         }}>Edit</Button>
